@@ -1,8 +1,12 @@
-package com.example.demo;
+package com.example.demo.Business;
 
 public class Country {
     private String countryName;
 
+    public Country()
+    {
+
+    }
     public Country(String countryName) {
         this.countryName = countryName;
     }
