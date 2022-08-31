@@ -1,5 +1,6 @@
 package com.example.demo.Presentation;
 
+import com.example.demo.Business.Country;
 import com.example.demo.Business.CountryService;
 import com.example.demo.Repository.CountryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,23 +15,31 @@ import javax.servlet.http.HttpSession;
 @Controller
 public class CountryController {
 
-    @Autowired
-    CountryService service;
-
 
    @GetMapping("/")
-    public String country(Model model){
-       model.addAttribute("randomcountry",service.randomCountry());
-       model.addAttribute("countryname",service.randomCountryRepresentation());
+    public String country(Model model,HttpSession session){
+       System.out.println("omp");
+       CountryService service= new CountryService();
+       System.out.println("Group4");
+       session.setAttribute("service",service);
 
+      model.addAttribute("goalCountry",service.getGoalCountry());
+       model.addAttribute("stringRep",service.randomCountryRepresentation());
        return "country";
    }
-
   @PostMapping("/")
     public String countryPost(Model model, @RequestParam String inputChar, HttpSession session){
-       String sessionChar =(String)session.getAttribute("sessionChar");
-       session.setAttribute("sessionChar",service.currentClue(inputChar));
-       model.addAttribute("compareChar",service.currentClue(inputChar));
+
+       CountryService service =(CountryService) session.getAttribute("service");
+       if(service == null)
+       {
+           service= new CountryService();
+       }
+       char[] modifiedWord =service.currentClue(inputChar);
+
+       session.setAttribute("service",service);
+
+       model.addAttribute("stringRep",modifiedWord);
        return "country";
    }
 

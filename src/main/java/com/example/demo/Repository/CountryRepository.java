@@ -8,13 +8,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-@Repository
 public class CountryRepository {
   private List<Country> countryList;
 
     public CountryRepository() {
-       String a[]
-                = new String[]{ "SWEDEN", "INDIA", "RUSSIA", "CANADA","BRAZIL","AUSTRALIA","ARGENTINA","FINLAND","SUDAN","NORWAY"};
+       String a[] = new String[]{ "SWEDEN", "INDIA", "RUSSIA", "CANADA","BRAZIL","AUSTRALIA","ARGENTINA","FINLAND","SUDAN","NORWAY"};
         this.countryList = new ArrayList<>();
         for(String i: a)
         {

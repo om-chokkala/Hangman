@@ -8,11 +8,22 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-@Service
-public class CountryService {
 
-    @Autowired
+public class CountryService {
     public CountryRepository repository;
+
+    private char[] countryRepresentation;
+    private String goalCountry;
+
+    public String getGoalCountry() {
+        return goalCountry;
+    }
+
+    public CountryService() {
+        repository=new CountryRepository();
+        goalCountry=randomCountry();
+        countryRepresentation=randomCountryRepresentation();
+    }
 
     public String randomCountry()
     {
@@ -21,35 +32,24 @@ public class CountryService {
 
     public char[] randomCountryRepresentation()
     {
-        char[] countryRepresentation = new char[randomCountry().length()];
-
+        char[] countryRepresentation = new char[goalCountry.length()];
         for(int i=0 ; i< countryRepresentation.length ;i++)
-
         {
            countryRepresentation[i]= '_';
         }
        return countryRepresentation;
     }
-
     public char[] currentClue(String charGuesses)
     {
         char firstChar= charGuesses.toUpperCase().charAt(0);
-        String randomCountry= randomCountry();
-        char[] tempRepresentation = randomCountryRepresentation();
-        for (int i = 0; i < randomCountry.length(); i++) {
-            if (firstChar == randomCountry.charAt(i)) {
-                tempRepresentation[i] = firstChar;
+
+        for (int i = 0; i < goalCountry.length(); i++) {
+            if (firstChar == goalCountry.charAt(i)) {
+                countryRepresentation[i] = firstChar;
             }
         }
-        return tempRepresentation;
+        return countryRepresentation;
     }
-
-
-
-
-
-
-
 
 
 }

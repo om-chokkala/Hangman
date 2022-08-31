@@ -14,21 +14,20 @@
 
 <body>
 
-
-<br>
-<form action="/" method="post">
-    <div th:text="${randomcountry}"> </div>
-    <span th:each=" c : ${countryname}">
+<div th:text="${goalCountry}"> </div>
+<span th:each=" c : ${stringRep}">
     <span th:text="${c}"></span>
     </span>
+
+<br>
+
+<form action="/" method="post">
+
     <input type="text" name="inputChar">
     <input type="submit">
 
 </form>
 
-<span th:each=" c : ${compareChar}">
-    <span th:text="${c}"></span>
-</span>
 
 </body>
 </html>
