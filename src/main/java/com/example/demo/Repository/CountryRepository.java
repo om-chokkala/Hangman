@@ -14,7 +14,7 @@ public class CountryRepository {
 
     public CountryRepository() {
        String a[]
-                = new String[]{ "Sweden", "India", "Russia", "Canada","Brazil","Australia","Argentina","Finland","Sudan","Norway"};
+                = new String[]{ "SWEDEN", "INDIA", "RUSSIA", "CANADA","BRAZIL","AUSTRALIA","ARGENTINA","FINLAND","SUDAN","NORWAY"};
         this.countryList = new ArrayList<>();
         for(String i: a)
         {

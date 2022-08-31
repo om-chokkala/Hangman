@@ -31,14 +31,14 @@ public class CountryService {
        return countryRepresentation;
     }
 
-
-    public char[] currentClue(char charGuesses)
+    public char[] currentClue(String charGuesses)
     {
+        char firstChar= charGuesses.toUpperCase().charAt(0);
+        String randomCountry= randomCountry();
         char[] tempRepresentation = randomCountryRepresentation();
-        for (int i = 0; i < randomCountry().length(); i++) {
-
-            if (charGuesses == randomCountry().charAt(i)) {
-                tempRepresentation[i] = charGuesses;
+        for (int i = 0; i < randomCountry.length(); i++) {
+            if (firstChar == randomCountry.charAt(i)) {
+                tempRepresentation[i] = firstChar;
             }
         }
         return tempRepresentation;

@@ -17,16 +17,18 @@
 
 <br>
 <form action="/" method="post">
-    <dev th:each=" c : ${countryname}">
+    <div th:text="${randomcountry}"> </div>
+    <span th:each=" c : ${countryname}">
     <span th:text="${c}"></span>
-    </dev>
+    </span>
     <input type="text" name="inputChar">
     <input type="submit">
+
 </form>
 
-<dev th:each=" c : ${compareChar}">
+<span th:each=" c : ${compareChar}">
     <span th:text="${c}"></span>
-</dev>
+</span>
 
 </body>
 </html>
