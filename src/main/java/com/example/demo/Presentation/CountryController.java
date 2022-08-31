@@ -20,15 +20,21 @@ public class CountryController {
 
    @GetMapping("/")
     public String country(Model model){
-       model.addAttribute("countryName",service.randomCountry());
+       model.addAttribute("countryname",service.randomCountryRepresentation());
        return "country";
    }
 
-   @PostMapping("/")
+  /* @PostMapping("/")
     public String countryPost(Model model, @RequestParam char inputChar, HttpSession session){
-       session.setAttribute("input",inputChar);
+       session.getAttribute("sessionChar");
+       session.setAttribute("sessionChar",service.currentClue(inputChar));
        model.addAttribute("compareChar",service.currentClue(inputChar));
+       return "country";
+   }*/
 
+    @PostMapping("/")
+    public String countryPost(Model model, @RequestParam char inputChar){
+       model.addAttribute("compareChar",service.currentClue(inputChar));
        return "country";
    }
 }

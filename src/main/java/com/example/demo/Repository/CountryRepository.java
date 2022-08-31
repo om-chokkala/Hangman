@@ -10,16 +10,12 @@ import java.util.Random;
 
 @Repository
 public class CountryRepository {
-
   private List<Country> countryList;
-
 
     public CountryRepository() {
        String a[]
                 = new String[]{ "Sweden", "India", "Russia", "Canada","Brazil","Australia","Argentina","Finland","Sudan","Norway"};
-
         this.countryList = new ArrayList<>();
-
         for(String i: a)
         {
             countryList.add(new Country(i));

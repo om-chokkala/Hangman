@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @Service
@@ -15,33 +16,33 @@ public class CountryService {
 
     public String randomCountry()
     {
-        //String randCountryName= repository.randomCountryGenerator().getCountryName();
-        String country= "__  ";
-       int templength= repository.randomCountryGenerator().getCountryName().length();
-       return country.repeat(templength);
-
+        return repository.randomCountryGenerator().getCountryName();
     }
 
-    public List<Character> currentClue(char correctGuesses)
+    public char[] randomCountryRepresentation()
     {
+        char[] countryRepresentation = new char[randomCountry().length()];
+
+        for(int i=0 ; i< countryRepresentation.length ;i++)
+
+        {
+           countryRepresentation[i]= '_';
+        }
+       return countryRepresentation;
+    }
 
 
-        List<Character> clue = new ArrayList<>();
-
+    public char[] currentClue(char charGuesses)
+    {
+        char[] tempRepresentation = randomCountryRepresentation();
         for (int i = 0; i < randomCountry().length(); i++) {
-            int indexPosition;
-            char c = randomCountry().charAt(i);
-            if (correctGuesses == c) {
-                indexPosition = i;
-                clue<indexPosition> = c;
-            }
-            else {
-                clue.add(null);
+
+            if (charGuesses == randomCountry().charAt(i)) {
+                tempRepresentation[i] = charGuesses;
             }
         }
-        return clue;
+        return tempRepresentation;
     }
-
 
 
 
