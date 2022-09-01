@@ -1,21 +1,15 @@
 package com.example.demo.Business;
 
 import com.example.demo.Repository.CountryRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 
 public class CountryService {
     public CountryRepository repository;
     private char[] countryRepresentation;
     private String goalCountry;
-    private int noOfWrongattempts=0;
+    private int noOfWrongattempts;
 
-    private final int maxAttempts= 10;
+    private int maxAttempts = 10;
 
     public CountryRepository getRepository() {
         return repository;
@@ -56,29 +50,33 @@ public class CountryService {
         }
        return countryRepresentation;
     }
-    public char[] currentClue(String charGuesses)
-    {
+    public char[] currentClue(String charGuesses) {
+        boolean ishit = false;
         char firstChar = charGuesses.toUpperCase().charAt(0);
         for (int i = 0; i < goalCountry.length(); i++) {
             if (firstChar == goalCountry.charAt(i)) {
+                ishit = true;
                 countryRepresentation[i] = firstChar;
-                //noOfWrongattempts--;
             }
+        }
+        if (!ishit) {
             noOfWrongattempts++;
         }
-        noOfWrongattempts= noOfWrongattempts-goalCountry.length()+1;
-        System.out.println(noOfWrongattempts);
         return countryRepresentation;
     }
 
-    public String endTheGame()
-    {
-        if(noOfWrongattempts == maxAttempts)
-        {
-            return "you lost the game";
+    public boolean isWon() {
+        for (char c : countryRepresentation) {
+            if (c == '_') {
+                return false;
+            }
         }
-        return "You won";
+        return true;
     }
 
+    public boolean isLost() {
+
+        return noOfWrongattempts > 10;
+    }
 
 }
