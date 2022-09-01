@@ -11,22 +11,24 @@
 
 </head>
 
-
 <body>
 
 <div th:text="${goalCountry}"> </div>
-<span th:each=" c : ${stringRep}">
+
+<span th:each=" c : ${expectedCountry}">
+    <span th:text="${c}"></span>
+    </span>
+<span th:each=" c : ${guessedCountry}">
     <span th:text="${c}"></span>
     </span>
 
-<br>
-
 <form action="/" method="post">
-
-    <input type="text" name="inputChar">
-    <input type="submit">
-
+        <input type="text" name="inputChar">
+        <input type="submit">
 </form>
+
+<span th:text="${win}"></span>
+
 
 
 </body>
