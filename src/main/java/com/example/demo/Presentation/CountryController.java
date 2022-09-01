@@ -37,7 +37,15 @@ public class CountryController {
         } else if (service.isLost()) {
             return "gameover";
         } else {
+
+            int getNumberofAttempts= service.getNoOfWrongattempts();
+
+            int attemptsLeft= service.getMaxAttempts()-getNumberofAttempts;
+
             session.setAttribute("service", service);
+            model.addAttribute("wrongattempt", getNumberofAttempts);
+            model.addAttribute("attemptsleft",attemptsLeft );
+
             model.addAttribute("guessedCountry", arrayOfguessedChar);
         }
         return "country";

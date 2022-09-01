@@ -13,7 +13,13 @@
 
 <body>
 
+<h1> You have 10 attempts to guess the country </h1>
+<h2>Attempts Left:</h2>
+
+<h2 th:text="${attemptsleft}"></h2>
+
 <div th:text="${goalCountry}"> </div>
+
 
 <span th:each=" c : ${expectedCountry}">
     <span th:text="${c}"></span>
@@ -22,12 +28,14 @@
     <span th:text="${c}"></span>
     </span>
 
+
 <form action="/" method="post">
         <input type="text" name="inputChar">
         <input type="submit">
 </form>
 
-<span th:text="${win}"></span>
+<div th:text="${wrongattempt}">
+</div>
 
 
 
