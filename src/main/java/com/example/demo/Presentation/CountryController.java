@@ -42,9 +42,12 @@ public class CountryController {
 
             int attemptsLeft= service.getMaxAttempts()-getNumberofAttempts;
 
+            String image= service.getSrc();
+
             session.setAttribute("service", service);
             model.addAttribute("wrongattempt", getNumberofAttempts);
             model.addAttribute("attemptsleft",attemptsLeft );
+            model.addAttribute("img",image );
 
             model.addAttribute("guessedCountry", arrayOfguessedChar);
         }

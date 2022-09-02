@@ -11,6 +11,12 @@ public class CountryService {
 
     private int maxAttempts = 10;
 
+    String src = "https://runescape.wiki/w/Hangman_game#/media/File:Hangman_game.png";
+
+    public String getSrc() {
+        return src;
+    }
+
     public CountryRepository getRepository() {
         return repository;
     }
