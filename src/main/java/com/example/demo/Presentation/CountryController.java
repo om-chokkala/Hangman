@@ -15,6 +15,12 @@ import javax.servlet.http.HttpSession;
 @Controller
 public class CountryController {
 
+    @GetMapping("/start")
+    public String start(){
+        return "Welcome";
+    }
+
+
     @GetMapping("/")
     public String country(Model model, HttpSession session) {
 

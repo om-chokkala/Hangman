@@ -15,7 +15,7 @@ div{
  Height:500px;
   border: 10px solid green;
   padding: 50px;
-  margin-left: 250px;
+  margin-left: 450px;
   margin-top:50px;
 }
 
@@ -26,15 +26,19 @@ div{
   margin-left: 100px;
 
 }
-    </style>
+</style>
 </head>
+
 <body>
 <div class="star">
     <h2> You have 10 attempts to guess the country</h2>
     <h3>
         <span>Attempts Left:</span>
         <span th:text="${attemptsleft}"></span>
-        <p th:text="${goalCountry}"> <p/> </h3>
+<!--
+        <p th:text="${goalCountry}">
+-->
+        <p/></h3>
     <div>
    <span style="margin:2px" th:each=" c : ${expectedCountry}">
     <span th:text="${c}"></span>
@@ -47,13 +51,15 @@ div{
     </div>
 
     <form action="/" method="post">
-        <input type="text" name="inputChar"style="border:2px solid green;">
+        <input type="text" name="inputChar" style="border:2px solid green;">
         <input type="submit" style="border:2px solid green;">
     </form>
+
     <br>
-    <div th:text="${wrongattempt}">
-    </div >
-    <img id="star" th:src = "@{/game.jpg}" alt="hangman"width="250" height="300">
+<!--
+    <div th:text="${wrongattempt}"></div>
+-->
+    <img id="star" th:src="@{/game.jpg}" alt="hangman" width="250" height="300">
 </div>
 </body>
 </html>
