@@ -2,6 +2,9 @@ package com.example.demo.Business;
 
 import com.example.demo.Repository.CountryRepository;
 
+import java.util.ArrayList;
+import java.util.List;
+
 
 public class CountryService {
     public CountryRepository repository;
@@ -11,10 +14,10 @@ public class CountryService {
 
     private int maxAttempts = 10;
 
-    String src = "https://runescape.wiki/w/Hangman_game#/media/File:Hangman_game.png";
+    private List<String> letters= new ArrayList<>();
 
-    public String getSrc() {
-        return src;
+    public List<String> getLetters() {
+        return letters;
     }
 
     public CountryRepository getRepository() {
@@ -24,6 +27,8 @@ public class CountryService {
     public char[] getCountryRepresentation() {
         return countryRepresentation;
     }
+
+
 
     public String getGoalCountry() {
         return goalCountry;
@@ -57,28 +62,38 @@ public class CountryService {
        return countryRepresentation;
     }
     public char[] currentClue(String charGuesses) {
-        boolean ishit = false;
-        char firstChar = charGuesses.toUpperCase().charAt(0);
-        for (int i = 0; i < goalCountry.length(); i++) {
-            if (firstChar == goalCountry.charAt(i)) {
-                ishit = true;
-                countryRepresentation[i] = firstChar;
-            }
-        }
-        if (!ishit) {
-            noOfWrongattempts++;
-        }
-        return countryRepresentation;
-    }
 
-    public boolean isWon() {
-        for (char c : countryRepresentation) {
-            if (c == '_') {
-                return false;
+        boolean ishit = false;
+        if(!letters.contains(charGuesses)) {
+
+            letters.add(charGuesses);
+            char firstChar = charGuesses.toUpperCase().charAt(0);
+            for (int i = 0; i < goalCountry.length(); i++) {
+                if (firstChar == goalCountry.charAt(i)) {
+                    ishit = true;
+                    countryRepresentation[i] = firstChar;
+                }
+            }
+            if (!ishit) {
+                noOfWrongattempts++;
+            }
+            return countryRepresentation;
+        }
+            else
+            {
+                return countryRepresentation;
             }
         }
-        return true;
-    }
+
+        public boolean isWon() {
+            for (char c : countryRepresentation) {
+                if (c == '_') {
+                    return false;
+                }
+            }
+            return true;
+        }
+
 
     public boolean isLost() {
 

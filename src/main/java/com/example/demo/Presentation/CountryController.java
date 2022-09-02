@@ -20,13 +20,14 @@ public class CountryController {
         return "Welcome";
     }
 
-
     @GetMapping("/")
     public String country(Model model, HttpSession session) {
 
         CountryService service = new CountryService();
         session.setAttribute("service", service);
+/*
         model.addAttribute("goalCountry", service.getGoalCountry());
+*/
         model.addAttribute("expectedCountry", service.CountryRepresentation());
         return "country";
     }
@@ -41,20 +42,15 @@ public class CountryController {
         if (service.isWon()) {
             return "gamewon";
         } else if (service.isLost()) {
+            session.setAttribute("service", service);
+            model.addAttribute("goalCountry", service.getGoalCountry());
             return "gameover";
         } else {
-
             int getNumberofAttempts= service.getNoOfWrongattempts();
-
             int attemptsLeft= service.getMaxAttempts()-getNumberofAttempts;
-
-            String image= service.getSrc();
-
             session.setAttribute("service", service);
             model.addAttribute("wrongattempt", getNumberofAttempts);
             model.addAttribute("attemptsleft",attemptsLeft );
-            model.addAttribute("img",image );
-
             model.addAttribute("guessedCountry", arrayOfguessedChar);
         }
         return "country";

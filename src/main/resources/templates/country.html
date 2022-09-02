@@ -35,10 +35,8 @@ div{
     <h3>
         <span>Attempts Left:</span>
         <span th:text="${attemptsleft}"></span>
-<!--
-        <p th:text="${goalCountry}">
--->
-        <p/></h3>
+        <p th:text="${goalCountry}"><p/>
+    </h3>
     <div>
    <span style="margin:2px" th:each=" c : ${expectedCountry}">
     <span th:text="${c}"></span>
