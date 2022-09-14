@@ -17,12 +17,13 @@ public class CountryService {
     private int noOfWrongattempts;
 
     private int maxAttempts = 10;
+    private int score;
 
     private List<String> letters = new ArrayList<>();
 
     public CountryService() {
        // repository = new CountryRepository();
-        goalCountry = "";//randomCountry();
+        goalCountry = " ";//randomCountry();
         countryRepresentation = CountryRepresentation();
     }
 
@@ -49,6 +50,8 @@ public class CountryService {
     public int getMaxAttempts() {
         return maxAttempts;
     }
+
+
 
  /*   public String randomCountry()
     {
@@ -82,6 +85,7 @@ public class CountryService {
             }
             if (!ishit) {
                 noOfWrongattempts++;
+                score= noOfWrongattempts*100;
             }
             return countryRepresentation;
         }

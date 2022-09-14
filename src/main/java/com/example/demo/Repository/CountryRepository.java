@@ -14,7 +14,6 @@ public interface CountryRepository extends JpaRepository<Country,Long> {
     Country findAllById(Long randomNumber);
 
 
-
     /*private List<Country> countryList;*/
 
 
