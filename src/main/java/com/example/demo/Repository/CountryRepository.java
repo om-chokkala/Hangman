@@ -10,8 +10,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+
 public interface CountryRepository extends JpaRepository<Country,Long> {
     Country findAllById(Long randomNumber);
+
 
 
     /*private List<Country> countryList;*/

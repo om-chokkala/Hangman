@@ -3,15 +3,18 @@ package com.example.demo.Business;
 import com.example.demo.Repository.CountryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.context.annotation.SessionScope;
 
+import javax.annotation.PostConstruct;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
 @Service
+@SessionScope
 public class CountryService {
     @Autowired
-    public CountryRepository repository;
+    CountryRepository repository;
     private char[] countryRepresentation;
     private String goalCountry;
     private int noOfWrongattempts;
@@ -21,19 +24,15 @@ public class CountryService {
 
     private List<String> letters = new ArrayList<>();
 
-    public CountryService() {
+    public CountryService(){}
+    @PostConstruct
+    public void init() {
        // repository = new CountryRepository();
-        goalCountry = " ";//randomCountry();
-        countryRepresentation = CountryRepresentation();
+        goalCountry = randomCountryGenerator().getCountryName();
+        countryRepresentation = countryRepresentation();
     }
-
-
     public List<String> getLetters() {
         return letters;
-    }
-
-    public CountryRepository getRepository() {
-        return repository;
     }
 
     public char[] getCountryRepresentation() {
@@ -51,15 +50,7 @@ public class CountryService {
         return maxAttempts;
     }
 
-
-
- /*   public String randomCountry()
-    {
-        return repository.randomCountryGenerator().getCountryName();
-    }*/
-
-
-    public char[] CountryRepresentation()
+    public char[] countryRepresentation()
     {
         char[] countryRepresentation = new char[goalCountry.length()];
         for(int i=0 ; i< countryRepresentation.length ;i++)
@@ -71,9 +62,7 @@ public class CountryService {
 
     public char[] currentClue(String charGuesses) {
         boolean ishit = false;
-
         if(!letters.contains(charGuesses)) {
-
             letters.add(charGuesses);
             char firstChar = charGuesses.toUpperCase().charAt(0);
             for (int i = 0; i < goalCountry.length(); i++) {
@@ -110,11 +99,10 @@ public class CountryService {
     }
       public Country randomCountryGenerator()
     {
-        Country country = new Country();
         Random rand= new Random();
-        Long randomNumber= rand.nextLong(0,repository.count());
-        country=repository.findAllById(randomNumber);
-        return country;
+        int randomNumber= rand.nextInt(0,(int)repository.count());
+        List<Country> countryList=repository.findAll();
+        return countryList.get(randomNumber);
     }
 
 }
