@@ -10,6 +10,9 @@ public class Score {
 
     private int score;
 
+  /*  @OneToMany
+    private int playerId;*/
+
     public Score() {
     }
 
