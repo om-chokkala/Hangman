@@ -29,8 +29,7 @@ public class CountryController {
 /*
         model.addAttribute("goalCountry", service.getGoalCountry());
 */
-
-
+        service.init();
         char[] l= service.countryRepresentation();
         model.addAttribute("expectedCountry",l );
         return "country";

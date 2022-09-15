@@ -31,6 +31,8 @@ public class CountryService {
     @PostConstruct
     public void init() {
        // repository = new CountryRepository();
+        noOfWrongattempts = 0;
+        letters = new ArrayList<>();
         goalCountry = randomCountryGenerator().getCountryName();
         countryRepresentation = countryRepresentation();
     }
