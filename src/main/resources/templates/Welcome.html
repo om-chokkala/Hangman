@@ -39,14 +39,16 @@ font-size:16px;
 <body>
 
 <h1> Welcome to Hangman Game</h1>
-<form>
-    <div>
+<form action="http://localhost:8080/start" method="post">
+    <input type="text" name="username">
+    <input type="submit" value="Start">
+
+   <!-- <div>
         <a href="http://localhost:8080/">
             <input id="buttons" type="button" value="Start Game"/>
         </a>
-
     </div>
-
+-->
 
 
 </form>

@@ -17,15 +17,20 @@ public class CountryController {
     public String start(){
         return "Welcome";
     }
+    @PostMapping("/start")
+    public String start1(@RequestParam String username){
+        service.logIn(username);
+        return "redirect:/";
+    }
+
 
     @GetMapping("/")
     public String country(Model model) {
 /*
         model.addAttribute("goalCountry", service.getGoalCountry());
 */
-        if(service.isWon()){
 
-        }
+
         char[] l= service.countryRepresentation();
         model.addAttribute("expectedCountry",l );
         return "country";
@@ -35,13 +40,15 @@ public class CountryController {
     public String countryPost(Model model, @RequestParam String inputChar) {
         char[] arrayOfguessedChar = service.currentClue(inputChar);
         if (service.isWon()) {
+            service.won();
             return "gamewon";
         } else if (service.isLost()) {
+            service.lost();
             model.addAttribute("goalCountry", service.getGoalCountry());
             return "gameover";
         } else {
             int getNumberofAttempts= service.getNoOfWrongattempts();
-            int attemptsLeft= service.getMaxAttempts()-getNumberofAttempts;
+            int attemptsLeft= service.MAXATTEMPTS-getNumberofAttempts;
             model.addAttribute("wrongattempt", getNumberofAttempts);
             model.addAttribute("attemptsleft",attemptsLeft );
             model.addAttribute("guessedCountry", arrayOfguessedChar);

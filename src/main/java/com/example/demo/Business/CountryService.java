@@ -1,6 +1,7 @@
 package com.example.demo.Business;
 
 import com.example.demo.Repository.CountryRepository;
+import com.example.demo.Repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.context.annotation.SessionScope;
@@ -15,12 +16,14 @@ import java.util.Random;
 public class CountryService {
     @Autowired
     CountryRepository repository;
+    @Autowired
+    UserRepository userRepository;
     private char[] countryRepresentation;
     private String goalCountry;
     private int noOfWrongattempts;
 
-    private int maxAttempts = 10;
-    private int score;
+    public static final int MAXATTEMPTS = 10;
+    private Player user;
 
     private List<String> letters = new ArrayList<>();
 
@@ -35,6 +38,14 @@ public class CountryService {
         return letters;
     }
 
+    public Player getUser() {
+        return user;
+    }
+
+    public void setUser(Player user) {
+        this.user = user;
+    }
+
     public char[] getCountryRepresentation() {
         return countryRepresentation;
     }
@@ -46,9 +57,6 @@ public class CountryService {
         return noOfWrongattempts;
     }
 
-    public int getMaxAttempts() {
-        return maxAttempts;
-    }
 
     public char[] countryRepresentation()
     {
@@ -74,7 +82,7 @@ public class CountryService {
             }
             if (!ishit) {
                 noOfWrongattempts++;
-                score= noOfWrongattempts*100;
+               // score= noOfWrongattempts*100;
             }
             return countryRepresentation;
         }
@@ -105,4 +113,23 @@ public class CountryService {
         return countryList.get(randomNumber);
     }
 
+    public void logIn(String name){
+        List<Player> users = userRepository.findByName(name);
+        if(users.size() > 0){
+            user=users.get(0);
+        }
+        else {
+            user = userRepository.save(new Player(name));
+        }
+    }
+
+    public void won() {
+        user.won(noOfWrongattempts);
+        userRepository.save(user);
+    }
+
+    public void lost() {
+        user.lost(noOfWrongattempts);
+        userRepository.save(user);
+    }
 }

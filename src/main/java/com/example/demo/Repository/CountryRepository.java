@@ -12,7 +12,8 @@ import java.util.Random;
 
 
 public interface CountryRepository extends JpaRepository<Country,Long> {
-    Country findAllById(Long randomNumber);
+
+
 
 
 
