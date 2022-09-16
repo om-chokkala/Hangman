@@ -4,13 +4,24 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+
 </head>
 <body>
 <h1 style="margin-left:30px">    You Won!!! :) </h1>
 <br>
-<img th:src = "@{/won.jpg}" alt="hangman"width="500" height="500">
-<h2><a href="/">Click here to play again</a></h2>
 
+
+<span th:each=" c : ${playerlist}">
+    <span th:text="${c.name}"></span>
+    <span th:text="${c.avg}"></span>
+    </span>
+
+<h2 th:text="'Your score is :'+${score}"></h2>
+
+<img th:src = "@{/won.jpg}" alt="hangman"width="500" height="500">
+
+<h2><a href="/">Click here to play again</a></h2>
+<h2><a href="/start">Click here to go to main page</a> </h2>
 </body>
 </html>
 

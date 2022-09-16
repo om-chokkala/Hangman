@@ -18,19 +18,16 @@ public class CountryController {
         return "Welcome";
     }
     @PostMapping("/start")
-    public String start1(@RequestParam String username){
+    public String start1(@RequestParam String username,Model model){
         service.logIn(username);
+        model.addAttribute("playerlist",service.getAllPlayers());
         return "redirect:/";
     }
 
-
     @GetMapping("/")
     public String country(Model model) {
-/*
-        model.addAttribute("goalCountry", service.getGoalCountry());
-*/
         service.init();
-        char[] l= service.countryRepresentation();
+        char[] l= service.getCountryRepresentation();
         model.addAttribute("expectedCountry",l );
         return "country";
     }
@@ -40,6 +37,7 @@ public class CountryController {
         char[] arrayOfguessedChar = service.currentClue(inputChar);
         if (service.isWon()) {
             service.won();
+            model.addAttribute("score",(CountryService.MAXATTEMPTS - service.getNoOfWrongattempts())*10);
             return "gamewon";
         } else if (service.isLost()) {
             service.lost();
@@ -54,5 +52,11 @@ public class CountryController {
         }
         return "country";
     }
+    @GetMapping("/score")
+    public String start1(Model model){
+        model.addAttribute("playerlist",service.getAllPlayers());
+        return "score";
+    }
+
 
 }

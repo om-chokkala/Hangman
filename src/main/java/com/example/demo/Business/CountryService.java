@@ -21,12 +21,9 @@ public class CountryService {
     private char[] countryRepresentation;
     private String goalCountry;
     private int noOfWrongattempts;
-
     public static final int MAXATTEMPTS = 10;
     private Player user;
-
     private List<String> letters = new ArrayList<>();
-
     public CountryService(){}
     @PostConstruct
     public void init() {
@@ -133,5 +130,11 @@ public class CountryService {
     public void lost() {
         user.lost(noOfWrongattempts);
         userRepository.save(user);
+    }
+
+    public List<Player> getAllPlayers(){
+        List<Player> scores;
+        scores= userRepository.findAll();
+        return scores;
     }
 }

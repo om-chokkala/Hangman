@@ -11,20 +11,24 @@ import org.springframework.context.annotation.Bean;
 
 @SpringBootApplication
 public class HangmanApplication {
-
-
-
 	public static void main(String[] args) {
 		SpringApplication.run(HangmanApplication.class, args);
-
-
 	}
 	@Bean
 	public CommandLineRunner run(CountryRepository repo)  {
 		return args -> {
-			repo.save(new Country("SWEDEN"));
+			repo.save(new Country("ETHIOPIA"));
 			repo.save(new Country("FINLAND"));
-			repo.save(new Country("NORWAY"));
+			repo.save(new Country("BELARUS"));
+			repo.save(new Country("CANADA"));
+			repo.save(new Country("BRAZIL"));
+			repo.save(new Country("HAITI"));
+			repo.save(new Country("LATVIA"));
+			repo.save(new Country("MADAGASCAR"));
+			repo.save(new Country("LIECHTENSTEIN"));
+			repo.save(new Country("ICELAND"));
+			repo.save(new Country("BHUTAN"));
+			repo.save(new Country("LUXEMBOURG"));
 		};
 	}
 

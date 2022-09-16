@@ -1,7 +1,5 @@
 package com.example.demo.Business;
-
 import javax.persistence.*;
-
 @Entity
 public class Score {
     @Id
@@ -9,10 +7,6 @@ public class Score {
     private Long id;
 
     private int score;
-
-  /*  @OneToMany
-    private int playerId;*/
-
     public Score() {
     }
 
